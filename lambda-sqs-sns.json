@@ -1,5 +1,11 @@
 {   
     "AWSTemplateFormatVersion": "2010-09-09",
+	"Parameters":{
+		"lambdaName":{
+			"Description":"Enter Lambda Function name",
+			"Type" : "String"
+		}
+	},
     "Resources" : {
         "LambdaFunctionRole": {
             "Type": "AWS::IAM::Role",
@@ -79,7 +85,9 @@
       "VAssgLambdaFunction": {
         "Type": "AWS::Lambda::Function",
         "Properties": {
-          "FunctionName": "VAsg-Queue-processor",
+          "FunctionName": {
+			  "Ref":"lambdaName"
+		  },
           "Role": {
             "Fn::GetAtt": [
                 "LambdaFunctionRole",
